@@ -1,8 +1,22 @@
-# React + Vite
+# Ignite Posts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Ignite Posts, a ReactJS project with TypeScript for creating and viewing posts on a fictional social network.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Make sure you have Node.js and npm installed on your machine. Clone the repository and run the following command:
+
+```bash
+npm install
+```
+
+## Technologies Used
+- ReactJS
+- TypeScript
+
+## License
+
+This project is licensed under the MIT License.
+
+
+Feel free to replace specific project details, such as the names of libraries used, to accurately reflect your application's structure.

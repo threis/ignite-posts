@@ -1,12 +1,30 @@
-import { useState } from 'react'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 import styles from './Post.module.css'
 
 import { Comment } from './Comment'
+import { Avatar } from './Avatar'
 
-export function Post({ author, content, publishedAt }) {
+interface Author {
+    avatarUrl: string
+    name: string
+    role: string
+}
+
+interface Content {
+    type: string
+    content: string
+}
+
+interface PostProps {
+    author: Author
+    content: Content[]
+    publishedAt: Date
+}
+
+export function Post({ author, content, publishedAt }: PostProps) {
 
     const [comments, setComments] = useState(['Post muito bacana, hein?!'])
 
@@ -20,32 +38,32 @@ export function Post({ author, content, publishedAt }) {
     })
 
 
-    function handleCreateNewComment() {
+    function handleCreateNewComment(event: FormEvent) {
         event.preventDefault()
         setComments([...comments, newCommentText])
         setNewCommentText('')
     }
 
-    function handleNewCommentChange() {
+    function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
         event.target.setCustomValidity("")
         setNewCommentText(event.target.value)
     }
 
-    function handleNewCommentInvalid(){
+    function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
         event.target.setCustomValidity("Esse campo é obrigatório!")
     }
 
-    function deleteComment(commentToDelete) {
+    function deleteComment(commentToDelete: string) {
         setComments(comments.filter(comment => comment !== commentToDelete))
     }
 
     const isNewCommentEmpty = newCommentText.length === 0
-    
+
     return (
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
-                    <img className={styles.avatar} src={author.avatarUrl} />
+                    <Avatar src={author.avatarUrl} />
                     <div className={styles.authorInfo}>
                         <strong>{author.name}</strong>
                         <span>{author.role}</span>
